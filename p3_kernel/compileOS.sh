@@ -9,6 +9,9 @@ dd if=message.txt of=floppya.img bs=512 count=1 seek=30 conv=notrunc
 bcc -ansi -c -o shell.o shell.c
 as86 lib.asm -o lib_asm.o
 ld86 -o shell -d shell.o lib_asm.o
+bcc -ansi -c -o uprog1.o uprog1.c
+ld86 -o uprog1 -d uprog1.o lib_asm.o
+./loadFile uprog1
 ./loadFile shell
 ./loadFile message.txt
 bochs -f opsys.bxrc

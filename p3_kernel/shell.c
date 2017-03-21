@@ -41,6 +41,7 @@ void parseInput(char* buff){
 	char fileName[7];
 	char type[4];
 	char run[3];
+	char execute[7];
 	char dirBuff[512];
 	char fileBuff[13312];
 	char fileName1[7];
@@ -100,6 +101,18 @@ void parseInput(char* buff){
 	else if (buff[indexIn]=='r' && buff[indexIn+1]=='u' && buff[indexIn+2]=='n'){
 		
 		indexIn = indexIn + 4;
+
+		for(i=0;i<6;i++){
+			fileName[i] = buff[indexIn+i];
+		}
+		fileName[6] = "\0";
+
+		interrupt(0x21, 4, fileName, 0x2000, 0);
+		
+	}
+	else if (buff[indexIn]=='e' && buff[indexIn+1]=='x' && buff[indexIn+2]=='e' && buff[indexIn+3]=='c' && buff[indexIn+4]=='u' && buff[indexIn+5]=='t' && buff[indexIn+6]=='e'){
+		
+		indexIn = indexIn + 8;
 
 		for(i=0;i<6;i++){
 			fileName[i] = buff[indexIn+i];
